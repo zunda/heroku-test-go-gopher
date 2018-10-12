@@ -33,7 +33,6 @@ $ heroku apps:open
 $ heroku update beta
 $ heroku plugins:install @heroku-cli/plugin-manifest
 $ heroku apps:create --manifest
-Creating app... done, stack is container
 $ heroku stack:set container
 $ git push heroku master
 $ heroku apps:open
