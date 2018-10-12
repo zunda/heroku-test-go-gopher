@@ -1,20 +1,24 @@
 # go-gopher
 A minimal Go app to be run as a Heroku container registry app
 
-## Run
+## Running and accessing the app
 ### Locally
-The server can be accessed at http://localhost:3000/
+```
+$ go run main.go &
+$ curl http://localhost:3000
+```
 
-```
-$ go run main.go
-```
+(`fg` and `^C` to stop)
 
 or
 
 ```
 $ docker build -t go-gopher .
-$ docker run -p 3000:3000 go-gopher
+$ docker run -p 3000:3000 go-gopher &
+$ curl http://localhost:3000
 ```
+
+(`docker ps` and `docker stop <container-id>` to stop)
 
 ## As a Heroku app
 ### Slug
