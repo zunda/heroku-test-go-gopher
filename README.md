@@ -19,5 +19,11 @@ $ docker run -p 3000:3000 go-gopher
 ## As a Heroku app
 ### Slug
 
+## Shell access
+### Locally
+```
+$ docker run -it go-gopher bash
+```
+
 ## Resources
-https://github.com/heroku/go-getting-started/blob/master/Dockerfile and edited.
+- Example `Dockerfile` for a go Heroku app: https://github.com/heroku/go-getting-started/blob/master/Dockerfile
