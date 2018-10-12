@@ -17,6 +17,9 @@ func main() {
 	h.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Go Gopher!\n")
 	})
+	h.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "favicon.ico")
+	})
 
 	log.Println("Listening at port " + port)
 	err := http.ListenAndServe(":"+port, h)

@@ -57,3 +57,7 @@ $ docker run -it go-gopher bash
 - Heroku Dev Center
   - [Container Registry & Runtime (Docker Deploys)](https://devcenter.heroku.com/articles/container-registry-and-runtime)
   - [Docker Builds with heroku.yml](https://devcenter.heroku.com/articles/docker-builds-heroku-yml)
+
+## License
+- [`favicon.ico`](https://golang.org/favicon.ico): Creative Commons Attribution 3.0 License
+- Others: [MIT](LICENSE)
