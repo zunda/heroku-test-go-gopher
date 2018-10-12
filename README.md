@@ -22,6 +22,11 @@ $ curl http://localhost:3000
 
 ## As a Heroku app
 ### Slug
+```
+$ heroku apps:create
+$ git push heroku master
+$ heroku apps:open
+```
 
 ## Shell access
 ### Locally
