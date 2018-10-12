@@ -2,7 +2,7 @@
 A minimal Go app to be run as a Heroku container registry app
 
 ## Running and accessing the app
-### Locally
+### Local
 ```
 $ go run main.go &
 $ curl http://localhost:3000
@@ -29,10 +29,13 @@ $ heroku apps:open
 ```
 
 ## Shell access
-### Locally
+### Local
 ```
 $ docker run -it go-gopher bash
 ```
 
 ## Resources
-- Example `Dockerfile` for a go Heroku app: https://github.com/heroku/go-getting-started/blob/master/Dockerfile
+- [Example `Dockerfile` for a go Heroku app](https://github.com/heroku/go-getting-started/blob/master/Dockerfile)
+- Heroku Dev Center
+  - [Container Registry & Runtime (Docker Deploys)](https://devcenter.heroku.com/articles/container-registry-and-runtime)
+  - [Docker Builds with heroku.yml](https://devcenter.heroku.com/articles/docker-builds-heroku-yml)
