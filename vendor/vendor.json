@@ -1,0 +1,9 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [],
+	"rootPath": "go-gopher",
+	"heroku": {
+		"goVersion": "go1.10"
+	}
+}
