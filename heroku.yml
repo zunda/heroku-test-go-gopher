@@ -4,4 +4,4 @@ build:
 release:
   image: web
   command:
-    - echo First command
+    - echo Second command
