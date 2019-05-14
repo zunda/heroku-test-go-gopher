@@ -15,6 +15,7 @@ func main() {
 
 	h := http.NewServeMux()
 	h.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		log.Printf("Request from %s", r.RemoteAddr);
 		fmt.Fprintf(w, "Go Gopher!\n")
 	})
 	h.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
