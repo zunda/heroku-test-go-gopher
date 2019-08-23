@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bytes"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -15,12 +17,20 @@ func main() {
 
 	h := http.NewServeMux()
 	h.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("Request from %s", r.RemoteAddr);
+		log.Printf("Request from %s", r.RemoteAddr)
+		fmt.Fprintf(w, "Go Gopher!\n")
 		switch r.Method {
 		case "GET":
-			fmt.Fprintf(w, "Go Gopher!\n")
 		case "HEAD":
-			fmt.Fprintf(w, "Go Gopher!\n")
+		case "POST":
+			buf := &bytes.Buffer{}
+			size, err := io.Copy(buf, r.Body)
+			if err != nil {
+				w.WriteHeader(503)
+				log.Fatal(err)
+			} else {
+				fmt.Fprintf(w, "Request body was %d bytes\n", size)
+			}
 		default:
 			w.WriteHeader(405)
 		}
