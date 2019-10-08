@@ -1,4 +1,8 @@
 build:
   docker:
     web: Dockerfile
-    release: Dockerfile.release
+run:
+  release:
+    image: web
+    command:
+      - echo Go! Gopher!
