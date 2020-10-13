@@ -17,8 +17,19 @@ func main() {
 
 	h := http.NewServeMux()
 	h.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		log.Printf("Request from %s", r.RemoteAddr)
-		fmt.Fprintf(w, "Go Gopher!\n")
+		log.Printf("Request from %s to %s", r.RemoteAddr, r.URL.Path)
+
+		switch r.URL.Path {
+		case "/echo":
+			for name, values := range r.Header {
+				for _, value := range values {
+					fmt.Fprintf(w, "%s: %s\n", name, value)
+				}
+			}
+		default:
+			fmt.Fprintf(w, "Go Gopher!\n")
+		}
+
 		switch r.Method {
 		case "GET":
 		case "HEAD":
