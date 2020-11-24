@@ -26,6 +26,17 @@ func main() {
 					fmt.Fprintf(w, "%s: %s\n", name, value)
 				}
 			}
+		case "/session":
+			sid := "unknown session ID"
+			c, err := r.Cookie("heroku-session-affinity")
+			if err == nil {
+				sid = c.Value
+			}
+			dyno := os.Getenv("DYNO")
+			if dyno == "" {
+				dyno = "unknown dyno"
+			}
+			fmt.Fprintf(w, "Hello Gopher from %s with %s!\n", dyno, sid)
 		default:
 			fmt.Fprintf(w, "Go Gopher!\n")
 		}
