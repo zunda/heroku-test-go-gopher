@@ -1,5 +1,6 @@
 {
-  "name": "Go Gpher",
+  "name": "Go Gopher",
+  "description": "Prints a message: Go Gopher",
   "formation": {
     "web": {
       "quantity": 1
