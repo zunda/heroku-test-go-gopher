@@ -21,6 +21,7 @@ func main() {
 
 		switch r.URL.Path {
 		case "/echo":
+			fmt.Fprintf(w, "%s %s %s\nHost: %s\n", r.Method, r.URL.Path, r.Proto, r.Host)
 			for name, values := range r.Header {
 				for _, value := range values {
 					fmt.Fprintf(w, "%s: %s\n", name, value)
