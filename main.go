@@ -63,6 +63,6 @@ func main() {
 	})
 
 	log.Println("Listening at port " + port)
-	err := http.ListenAndServe(":"+port, h)
+	err := http.ListenAndServe("[::]:"+port, h)
 	log.Fatal(err)
 }
