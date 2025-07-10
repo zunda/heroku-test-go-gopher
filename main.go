@@ -39,7 +39,12 @@ func main() {
 			}
 			fmt.Fprintf(w, "Hello Gopher from %s with %s!\n", dyno, sid)
 		default:
-			fmt.Fprintf(w, "Go Gopher!\n")
+			fmt.Fprintf(w, `<!DOCTYPE html>
+<html lang="en">
+<head><title>Go Gopher!</title></head>
+<body><p>Go Gopher!</p><p><img src="/ref.png"></p></body>
+</html>
+`)
 		}
 
 		switch r.Method {
@@ -60,6 +65,9 @@ func main() {
 	})
 	h.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
 		http.ServeFile(w, r, "favicon.ico")
+	})
+	h.HandleFunc("/ref.png", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "ref.png")
 	})
 
 	log.Println("Listening at port " + port)

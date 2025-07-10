@@ -58,5 +58,8 @@ $ docker run -it go-gopher bash
   - [Docker Builds with heroku.yml](https://devcenter.heroku.com/articles/docker-builds-heroku-yml)
 
 ## License
+The Go gopher was designed by [Renee French](https://www.instagram.com/reneefrench/).
 - [`favicon.ico`](https://golang.org/favicon.ico): Creative Commons Attribution 3.0 License
-- Others: [MIT](LICENSE)
+- [`ref.png`](https://go.googlesource.com/website/+/refs/heads/master/_content/doc/gopher/ref.png): Creative Commons 4.0 Attributions license as noted in [Go Wiki: Gopher](https://go.dev/wiki/Gopher)
+
+Others: [MIT](LICENSE)
