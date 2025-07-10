@@ -51,6 +51,10 @@ func main() {
 				dyno = "unknown dyno"
 			}
 			fmt.Fprintf(w, "Hello Gopher from %s with %s!\n", dyno, sid)
+		case "/favicon.ico":
+			http.ServeFile(w, r, "favicon.ico")
+		case "/ref.png":
+			http.ServeFile(w, r, "ref.png")
 		default:
 			fmt.Fprintf(w, `<!DOCTYPE html>
 <html lang="en">
@@ -75,12 +79,6 @@ func main() {
 		default:
 			w.WriteHeader(405)
 		}
-	})
-	h.HandleFunc("/favicon.ico", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "favicon.ico")
-	})
-	h.HandleFunc("/ref.png", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "ref.png")
 	})
 
 	log.Println("Listening at port " + port)
