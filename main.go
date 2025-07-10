@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"net/http/httputil"
 	"os"
 )
 
@@ -14,10 +15,22 @@ func main() {
 	if port == "" {
 		port = "3000"
 	}
+	dumpRequest := false
+	if os.Getenv("DUMP_REQUEST") != "" {
+		dumpRequest = true
+	}
 
 	h := http.NewServeMux()
 	h.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		log.Printf("Request from %s to %s", r.RemoteAddr, r.URL.Path)
+		if dumpRequest {
+			dump, err := httputil.DumpRequest(r, false)
+			if err != nil {
+				http.Error(w, fmt.Sprint(err), http.StatusInternalServerError)
+				return
+			}
+			log.Printf("%q", dump)
+		}
 
 		switch r.URL.Path {
 		case "/echo":
