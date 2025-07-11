@@ -19,6 +19,10 @@ func main() {
 	if os.Getenv("DUMP_REQUEST") != "" {
 		dumpRequest = true
 	}
+	closeConnection := false
+	if os.Getenv("CONNECTION_CLOSE") != "" {
+		closeConnection = true
+	}
 
 	h := http.NewServeMux()
 	h.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -30,6 +34,10 @@ func main() {
 				return
 			}
 			log.Printf("%q", dump)
+		}
+
+		if closeConnection {
+			w.Header().Set("Connection", "close")
 		}
 
 		switch r.URL.Path {
