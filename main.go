@@ -74,6 +74,16 @@ func main() {
 
 		switch r.Method {
 		case "GET":
+			buf := &bytes.Buffer{}
+			size, err := io.Copy(buf, r.Body)
+			if err != nil {
+				w.WriteHeader(503)
+				log.Fatal(err)
+			} else {
+				if size > 0 {
+					fmt.Fprintf(w, "Request body was %d bytes\n", size)
+				}
+			}
 		case "HEAD":
 		case "POST":
 			buf := &bytes.Buffer{}
