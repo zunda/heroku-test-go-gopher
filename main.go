@@ -40,40 +40,39 @@ func main() {
 			w.Header().Set("Connection", "close")
 		}
 
-		switch r.URL.Path {
-		case "/echo":
-			fmt.Fprintf(w, "%s %s %s\nHost: %s\n", r.Method, r.URL.Path, r.Proto, r.Host)
-			for name, values := range r.Header {
-				for _, value := range values {
-					fmt.Fprintf(w, "%s: %s\n", name, value)
+		switch r.Method {
+		case "GET":
+			switch r.URL.Path {
+			case "/echo":
+				fmt.Fprintf(w, "%s %s %s\nHost: %s\n", r.Method, r.URL.Path, r.Proto, r.Host)
+				for name, values := range r.Header {
+					for _, value := range values {
+						fmt.Fprintf(w, "%s: %s\n", name, value)
+					}
 				}
-			}
-		case "/session":
-			sid := "unknown session ID"
-			c, err := r.Cookie("heroku-session-affinity")
-			if err == nil {
-				sid = c.Value
-			}
-			dyno := os.Getenv("DYNO")
-			if dyno == "" {
-				dyno = "unknown dyno"
-			}
-			fmt.Fprintf(w, "Hello Gopher from %s with %s!\n", dyno, sid)
-		case "/favicon.ico":
-			http.ServeFile(w, r, "favicon.ico")
-		case "/ref.png":
-			http.ServeFile(w, r, "ref.png")
-		default:
-			fmt.Fprintf(w, `<!DOCTYPE html>
+			case "/session":
+				sid := "unknown session ID"
+				c, err := r.Cookie("heroku-session-affinity")
+				if err == nil {
+					sid = c.Value
+				}
+				dyno := os.Getenv("DYNO")
+				if dyno == "" {
+					dyno = "unknown dyno"
+				}
+				fmt.Fprintf(w, "Hello Gopher from %s with %s!\n", dyno, sid)
+			case "/favicon.ico":
+				http.ServeFile(w, r, "favicon.ico")
+			case "/ref.png":
+				http.ServeFile(w, r, "ref.png")
+			default:
+				fmt.Fprintf(w, `<!DOCTYPE html>
 <html lang="en">
 <head><title>Go Gopher!</title></head>
 <body><p>Go Gopher!</p><p><img src="/ref.png"></p></body>
 </html>
 `)
-		}
-
-		switch r.Method {
-		case "GET":
+			}
 		case "HEAD":
 		case "POST":
 			buf := &bytes.Buffer{}
