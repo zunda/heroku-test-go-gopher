@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/http/httputil"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -38,6 +39,15 @@ func main() {
 
 		if closeConnection {
 			w.Header().Set("Connection", "close")
+		}
+
+		stat := r.Header.Get("X-Response-Status")
+		if stat != "" {
+			s, err := strconv.Atoi(stat)
+			if err == nil {
+				log.Println("Responding with HTTP status code: " + stat)
+				w.WriteHeader(s)
+			}
 		}
 
 		switch r.Method {
