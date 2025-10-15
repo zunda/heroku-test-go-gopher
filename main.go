@@ -24,6 +24,7 @@ func main() {
 	if os.Getenv("CONNECTION_CLOSE") != "" {
 		closeConnection = true
 	}
+	serverResponseHeader := os.Getenv("SERVER_RESPONSE_HEADER")
 
 	h := http.NewServeMux()
 	h.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
@@ -39,6 +40,10 @@ func main() {
 
 		if closeConnection {
 			w.Header().Set("Connection", "close")
+		}
+
+		if serverResponseHeader != "" {
+			w.Header().Set("Server", serverResponseHeader)
 		}
 
 		stat := r.Header.Get("X-Response-Status")
