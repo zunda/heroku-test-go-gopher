@@ -15,7 +15,6 @@ RUN STACK=heroku-22 /tmp/buildpack/heroku/go/bin/compile /app /tmp/build_cache /
 FROM heroku/heroku:20
 
 COPY --from=build /app /app
-ENV HOME /app
 WORKDIR /app
 USER heroku
 CMD /app/bin/go-gopher
