@@ -17,4 +17,4 @@ FROM heroku/heroku:20
 COPY --from=build /app /app
 WORKDIR /app
 USER heroku
-CMD /app/bin/go-gopher
+CMD /app/bin/heroku-test-go-gopher
